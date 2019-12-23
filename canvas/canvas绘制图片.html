@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>canvas绘制图片</title>
+</head>
+<body>
+    <img src="./smile.png"/>
+    <canvas id="draw-img" width="1000" height="800" style="border: solid 1px #24d1ec">此浏览器不支持canvas!</canvas>
+</body> 
+<script>
+    const drawing = document.getElementById('draw-img');
+    // 确定浏览器是否支持<canvas>
+    if (drawing.getContext) {
+        // 获取canvas上下文
+        let context = drawing.getContext('2d'); 
+        
+        // 保证img绘制完成
+        window.onload = function() {
+            drawImage1(context);
+            drawImage2(context);
+            drawImage3(context);
+        }
+    }
+
+    // canvas 直接绘制图片
+    function drawImage1(ctx) {
+        // 创建img元素
+        let img = new Image();
+        img.onload = () => {
+            ctx.drawImage(img, 0, 0);
+        }
+        img.src = './smile.png';
+    }
+    
+    // 基于img元素绘制该元素中的图片，并进行缩放
+    function drawImage2(ctx) {
+        let img = document.querySelector('img');
+        ctx.drawImage(img, 10, 300, 100, 150);
+    }
+
+    // 对图片进行切片绘制
+    function drawImage3(ctx) {
+        let img = document.querySelector('img');
+        ctx.drawImage(img, 10, 10, 50, 50, 250, 300, 100, 100);
+    }
+
+</script>
+</html>
