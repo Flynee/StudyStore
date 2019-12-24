@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1>super</h1>
+        <form id="sourceForm" action="http://222.82.250.210:8005" target="target1" method="get" style="display: none">
+            <textarea name="jsonStr">{
+                "type": "show3d",
+                "userName": "zyh",
+            }</textarea>
+        </form>
+
+        <iframe id="targetIframe" name="target1" src="http://192.168.202.90:5557/index.html" frameborder="0" scrolling="no" style="width: 1720px; height: 835px;"></iframe>
+    </body>
+    <script>
+        window.onload = function() {
+            var text = document.getElementsByTagName('textarea')[0].innerHTML;
+            console.log(typeof text);
+            document.getElementById('targetIframe').contentWindow.postMessage(text, 'http://192.168.202.90:5557');
+        }
+        window.onhashchange = function (data) {
+            console.log(data);
+        }
+    </script>
+</html>

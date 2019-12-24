@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1>
+            我是场景页面 
+        </h1>
+        <button onclick="outScence()">
+            退出场景
+        </button>
+        <button onclick="openNewScence()">
+            打开一个新场景
+        </button>
+    </body>
+    <script>
+        function outScence() {
+            window.history.go(-1);
+        }
+        function openNewScence() {
+            // 打开一个新页面（在新页面里初始化一个场景）
+            console.log(document.referrer);
+            window.top.open('./new-scene.html');
+        }
+    </script>
+</html>

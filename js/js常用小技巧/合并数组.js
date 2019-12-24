@@ -1,0 +1,11 @@
+var arr1 = [1,{a: 'zhang'}, [1,2]];
+var arr2 = [1,2,3];
+var arr3 = [...arr1, ...arr2];
+var arr4 = new Array(...arr1, ...arr2);
+var arr5 = Array(...arr1, ...arr2);
+var arr7 = new Array('{a: zhang}');
+console.log(arr3);
+console.log(arr4);
+console.log(arr5);
+console.log(arr6);
+console.log(arr7);

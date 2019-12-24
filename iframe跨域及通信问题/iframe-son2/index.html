@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+       <h1>
+           我是地图
+       </h1>
+       <button onclick="enterScence()">
+           点击进入场景
+       </button>
+       <button onclick="openDialog()">打开一个dialog</button>
+    </body>
+    <script src="./index.js"></script>
+    <script>
+        function enterScence() {
+            // window.location.href = './index2.html';
+            window.open('./new-scene.html');
+        }
+        // window.onload = function () { 
+        //     var loginName;
+        //     var loginType;
+        //     window.addEventListener('message', function(event) {
+        //         console.log(event);
+        //         var origin = event.origin || event.originalEvent.origin;
+        //         if (origin === 'http://192.168.202.90:5557') {
+        //             var data = event.data;
+        //             console.log(data);
+        //         }
+        //     }, false);
+        // }
+        function openDialog() {
+            window.showModalDialog('.new-scene.html');
+        }
+    </script>
+</html>
