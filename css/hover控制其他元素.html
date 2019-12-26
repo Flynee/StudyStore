@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .outer {
+        width: 200px;
+        height: 200px;
+        border: 1px solid red;
+        margin: 200px auto;
+    }
+    .inner {
+        width: 100px;
+        height: 100px;
+        margin: 50px auto;
+        border: 1px solid green;
+    }
+
+    .outer2 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid rgb(0, 60, 255);
+        margin: 100px auto;
+    }
+    .inner2 {
+        width: 100px;
+        height: 100px;
+        margin: 50px auto;
+        border: 1px solid rgb(128, 41, 0);
+    }
+    /* 一下实现hover事件 */
+
+    /* 触发当前子级事件 */
+    .outer:hover .inner {
+        background: green;
+        transform: rotate(45deg);
+    }
+
+    /* 触发兄弟级事件 */
+    .outer:hover+.outer2 {
+        transform: rotate(666turn);
+        transition-delay: 1s;
+        transition-property: all;
+        transition-duration: 59s;
+        transition-timing-function: cubic-bezier(.34,0,.84,1);
+    }
+
+    /* 触发兄弟元素的子级元素事件 */
+    .outer:hover+.outer2>.inner2 {
+        background: yellow;
+        transform: rotate(-666turn);
+        transition-delay: 0.2s;
+        transition-property: all;
+        transition-duration: 59s;
+        transition-timing-function: cubic-bezier(.34,0,.84,1);
+    }
+
+
+</style>
+<body>
+    <div class="outer">
+        <span>outer</span>
+        <div class="inner">
+            <span>inner</span>
+        </div>
+    </div>
+
+    <div class="outer2">
+            <span>outer2</span>
+        <div class="inner2">
+            <span>inner2</span>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .outer {
+        display: flex;
+        box-sizing: border-box;
+        width: 200px;
+        height: 30px;
+        border:1px solid chartreuse;
+        background: #333;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .inner {
+        text-align: center;
+        border:1px solid chocolate;
+        line-height: 30px;
+    }
+
+    .inner:after {
+        background: red;
+        width: 30px;
+        height: 30px;
+        z-index: 1;
+        /* content: url('./arrow.png'); */
+    }
+</style>
+<body>
+    <div class="outer">
+        <div class="inner">点击箭头方向转变</div>
+    </div>
+</body>
+</html>
