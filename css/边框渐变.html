@@ -14,10 +14,17 @@
         border-right: node;
         border-right: none;
      }
+     .gradient { 
+        border: 30px solid;
+        border-image-source: linear-gradient(to right, red, green, blue);
+        border-image-slice: 10;
+        padding: 20px;
+    }
 
     </style>
 </head>
 <body>
     <div>进入平台</div>
+    <div class="gradient">The image is stretched to fill the area.</div>
 </body>
 </html>
