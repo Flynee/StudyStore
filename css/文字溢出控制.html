@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+        .div2 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            word-break: break-all;
+
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="div1">
+        单行控制单行控制qwerwqerfawetrqwetqwertqerwtgerteqg
+    </div>
+    <div class="div2">
+        多行控制多行控制sodfjlskdgnjaskdngasdfasdflknjdfkas
+    </div>
+</body>
+</html>
