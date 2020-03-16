@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body {
+            margin: 0;    
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+        .div-test {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .switch-on-off {
+            height: 80px;
+            width: 120px;
+            border: 1px solid red;
+            cursor: pointer;
+        }
+        .switch-animation {
+            animation: change-background-color 1s ease-in 0.5s 1 forwards;
+        }
+        @keyframes change-background-color {
+            10% {background: linear-gradient(90deg, red 50%, green 50%);}
+            30% {background: linear-gradient(90deg, yellow 5%, red 5%, red 55%, green 55%);}
+            50% {background: linear-gradient(90deg, yellow 15%, red 15%, red 65%, green 65%);}
+            80% {background: linear-gradient(90deg, yellow 30%, red 30%, red 80%, green 80%);}
+            100% {background: linear-gradient(90deg, yellow 50%, red 50%);}
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="div-test">
+        <div class="switch-on-off">
+
+        </div>
+    </div>
+</body>
+<script>
+    window.onload= () => {
+        var flag = false;
+
+        var dom = document.getElementsByClassName('switch-on-off')[0];
+        dom.addEventListener('click', (ev) => {
+            flag = !flag;
+            if (flag) {
+                // 添加动画类
+                dom.classList.add('switch-animation');
+            } else {
+                // 删除动画元素
+                dom.classList.remove('switch-animation');
+            }
+        });
+    };
+
+</script>
+</html>
