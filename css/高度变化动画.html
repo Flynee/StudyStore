@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style>
+    .container{
+      line-height: 30px;
+      text-align: center;
+      width: 100px;
+      position: relative;
+    }
+    .container:hover .sub{
+      max-height: 300px;
+    }
+    .sub{
+      position: absolute;
+      width: 100%;
+      transition: max-height .5s ease;
+      max-height: 0;
+      top: 100%;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  移过来
+  <ul class="sub">
+    <li>测试1</li>
+    <li>测试2</li>
+    <li>测试3</li>
+    <li>测试4</li>
+    <li>测试5</li>
+    <li>测试6</li>
+    <li>测试7</li>
+    <li>测试8</li>
+  </ul>
+</div>
+</body>
+</html>
