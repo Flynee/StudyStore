@@ -17,13 +17,21 @@
       height: 300px;
       width: 300px;
       border: 1px solid red;
-      background: linear-gradient(rgba(255,255,255, 0.5) 100%, transparent);
+      background: rgba(255,255,255, 0.1);
+    }
+    .mao-bo-li::before {
+      position: absolute;
+      content: '';
+      height: 100%;
+      width: 43px;
+      background: linear-gradient(rgba(255, 0, 0, 0.5) 100%, transparent);
+      z-index: -1;
       filter: blur(4px);
     }
   </style>
   <body>
     <div class="mao-bo-li">
-
+      测试毛玻璃
     </div>
   </body>
 </html>
