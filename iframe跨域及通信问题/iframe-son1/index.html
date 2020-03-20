@@ -28,8 +28,12 @@
         window.onhashchange = function (data) {
             // 获取传过来的值
             var url = decodeURI(data.newURL);
-            var params = url.match(/#((\S|\s)*)/)[1];
-            console.log(JSON.parse(params));
+            var params = JSON.parse(url.match(/#((\S|\s)*)/)[1]);
+            var {type} = params;
+            var {userName} = params;
+            localStorage.setItem('auth_type', type);
+            localStorage.setItem('auth_userName', userName);
+            console.table(params, type, userName);
         }
     </script>
 </html>
