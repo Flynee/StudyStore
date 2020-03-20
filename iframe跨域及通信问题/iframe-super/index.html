@@ -20,7 +20,7 @@
         }
         function translateMessage() {
             const iframe = document.getElementById('first-iframe');
-            let num = Math.random() * 10;
+            let num = JSON.stringify({type: 'show3d', userName: 'zhangzhzh'});
             const oldSrc = 'http://192.168.202.90:5556/index.html';
             iframe.setAttribute('src', oldSrc+'#'+num);
         }

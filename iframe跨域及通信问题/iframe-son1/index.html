@@ -26,7 +26,10 @@
             document.getElementById('targetIframe').contentWindow.postMessage(text, 'http://192.168.202.90:5557');
         }
         window.onhashchange = function (data) {
-            console.log(data);
+            // 获取传过来的值
+            var url = decodeURI(data.newURL);
+            var params = url.match(/#((\S|\s)*)/)[1];
+            console.log(JSON.parse(params));
         }
     </script>
 </html>
