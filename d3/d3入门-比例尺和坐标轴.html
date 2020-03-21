@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<style>
+    html,body {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<body>
+    <div id="svg"></div>
+</body>
+<script>
+     const dataset = [50, 60, 70, 70, 80, 90, 50];
+     const width = 400;
+     const height = 400;
+    // svg padding
+    const padding = {top: 20, right: 20, bottom: 20, left: 20};
+    // 柱形图step（柱形图宽度+柱形图之间艰巨）
+    const rectStep = 35;
+    // 柱形图宽度
+    const rectWidth = 30;
+    // x轴长度
+    const xAxisWidth = width - padding.left - padding.right;
+    // y轴高度
+    const yAxisHeight = height - padding.top - padding.bottom;
+
+    // x轴比例尺
+    const xScale = d3.scaleBand().domain(dataset.map((o, i) => i)).range([0, xAxisWidth]).padding(0.1);
+    // y轴比例尺
+    const yScale = d3.scaleLinear().domain([0, d3.max(dataset)]).rangeRound([yAxisHeight, 0]);
+   
+    //  初始化svg画布
+     const svg = d3.select('#svg').append('svg')
+        .attr('width', width)
+        .attr('height', height);
+    // 更新或初始化一个矩形
+    const genRec = obj => {
+        obj.attr('fill', 'red') // 为举行填充红色
+        .attr('x', (d, i) => padding.left + xScale(i)) // 设置x坐标
+        .attr('y', (d, i) => height - padding.bottom - (yScale(0) - yScale(d)) ) // 设置y坐标
+        .attr('width', xScale.bandwidth()) // 柱状图宽度
+        .attr('height', d => yScale(0) - yScale(d));
+    }
+    // 更新或初始化文字
+    const genText = obj => {
+        obj.attr('fill', '#000')
+        .attr('font-size', '14px')
+        .attr('text-anchor', 'middle')
+        .attr('x', (d, i) => padding.left + xScale(i))
+        .attr('y', (d, i) => height - padding.bottom - (yScale(0) - yScale(d)))
+        .text(d => d)
+        .attr('dx', xScale.bandwidth() / 2) // x轴偏移量
+        .attr('dy', '1em'); // y轴偏移量
+    }
+
+    // 初始化直方图
+    const enterRec = svg.selectAll('rect').data(dataset).enter().append('rect');
+    genRec(enterRec);
+    // 初始化文字
+    const enterText = svg.selectAll('text').data(dataset).enter().append('text');
+    genText(enterText);
+
+    // 更新直方图
+    const updatRec = svg.selectAll('rect').data([50, 60, 70, 70, 80, 90, 80]);
+    genRec(updatRec);
+    // 更新文字
+    const updateText = svg.selectAll('text').data([50, 60, 70, 70, 80, 90, 80]);
+    genText(updateText);
+    // 生成x坐标轴
+    const xAxis = d3.axisBottom(xScale);
+    // 生成y轴
+    const yAxis = d3.axisLeft(yScale);
+    // 设置x轴偏移量
+    const gX = svg.append('g').attr('transform', `translate(${padding.left}, ${height - padding.bottom})`);
+    // 设置y轴偏移量
+    const gY = svg.append('g').attr('transform',`translate(${padding.left}, ${padding.bottom})`)
+    // 偏移x轴
+    gX.call(xAxis);
+    // 偏移y轴
+    gY.call(yAxis);
+
+</script>
+</html>
