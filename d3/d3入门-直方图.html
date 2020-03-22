@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<style>
+    html,body {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<body>
+    <div id="svg"></div>
+</body>
+<script>
+     const dataset = [50, 60, 70, 70, 80, 90, 50];
+     const width = 400;
+     const height = 400;
+    //  初始化svg画布
+     const svg = d3.select('#svg').append('svg')
+        .attr('width', width)
+        .attr('height', height);
+    // svg padding
+    const padding = {top: 20, right: 20, bottom: 20, left: 20};
+    // 柱形图step（柱形图宽度+柱形图之间艰巨）
+    const rectStep = 35;
+    // 柱形图宽度
+    const rectWidth = 30;
+
+    // 绑定数据, enter表示将数据绑定到前面选中的元素中，
+    // 如果前面selectAll的元素不存在，则调用append新建元素，并绑定数据
+    svg.selectAll('rect').data(dataset).enter().append('rect')
+        .attr('fill', 'red') // 为举行填充红色
+        .attr('x', (d, i) => padding.left + i * rectStep) // 设置x坐标
+        .attr('y', (d, i) => height - padding.bottom - d ) // 设置y坐标
+        .attr('width', rectWidth) // 柱状图宽度
+        .attr('height', d => d);
+
+    // 添加文字
+    svg.selectAll('text').data(dataset).enter().append('text') 
+        .attr('fill', '#000')
+        .attr('font-size', '14px')
+        .attr('text-anchor', 'middle')
+        .attr('x', (d, i) => padding.left + i * rectStep)
+        .attr('y', (d, i) => height - padding.bottom - d)
+        .text(d => d)
+        .attr('dx', rectWidth / 2) // x轴偏移量
+        .attr('dy', '1em'); // y轴偏移量
+</script>
+</html>
