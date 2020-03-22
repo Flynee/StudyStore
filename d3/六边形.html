@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+    <script src="https://cdn.bootcss.com/d3-tip/0.9.1/d3-tip.js"></script>
+</head>
+<style>
+    html,body {
+        margin: 0;
+        padding: 0;
+    }
+    #svg {
+        border:1px solid red ;
+    }
+</style>
+<body>
+    <div id="svg"></div>
+</body>
+<script>
+    const tip = d3.tip()
+    . attr('class', 'd3-tip')
+    .html((d) => `${d}`);
+    const random_color = () => "#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, '0');
+    const width = 600;
+    const height = 400;
+    const padding = {top: 20, right: 20, bottom: 20, left: 20};
+    //  初始化svg画布
+     const svg = d3.select('#svg').append('svg')
+        .attr('width', 600)
+        .attr('height', 400)
+        .attr('cursor', (d) => 'pointer')
+        .call(tip);
+    
+    // 六边形半径
+    const r = 20;
+    // 六边形中心点坐标数组
+    const pos = [];
+    // 每个六边形的数据
+    const data = [];
+    for(let i=20; i<width-40; i+=20) {
+        for (let j=20; j<height-40; j+=20) {
+            pos.push([ i, j]);
+        }
+    };
+    const hexbin = d3.hexbin().radius(r);
+    const bins = hexbin(pos);
+    svg.selectAll("path")
+    .data(bins)
+    .enter().append("path")
+        .attr("transform", (d) =>`translate(${d.x + padding.right}, ${d.y + padding.top})`)
+        .attr("d", hexbin.hexagon())
+        .attr("fill", (d, i) => random_color())
+        .attr('border', '1px solid rgba(0, 0, 0, 0.5)')
+        .on("mouseover", tip.show)
+        .on("mouseout", tip.hide)
+        .on("click", d => { console.log(d) });
+
+</script>
+</html>
