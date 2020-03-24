@@ -59,7 +59,18 @@
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .attr('cursor', (d) => 'pointer')
         .call(tip);
-
+        var defs = svg.append("defs"); //插入defs
+        var linearGradient = defs //defs中插入<linearGradient>
+            .append("linearGradient")
+            .attr("id", "gradient"); //设置对应id
+        linearGradient //linearGradient中插入stop元素
+            .append("stop")
+            .attr("offset", "0%") //设置坡度，下同
+            .attr("stop-color", d3.color('#fff'));//设置对应颜色，下同
+        linearGradient
+            .append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", d3.color('#296230'));
     // 设置六边形半径
     var hexbin = d3.hexbin().radius(hexRadius);
 
@@ -72,9 +83,9 @@
         .attr("d", function (d) {
             return "M" + d.x + "," + d.y + hexbin.hexagon();
         })
-        .attr("stroke", "white")
+        .attr("stroke", "green")
         .attr("stroke-width", "1px")
-        .style("fill", "teal")
+        .style("fill", "url(#gradient)")
         .on("mouseover", tip.show)
         .on("mouseout", tip.hide)
         .on("click", d => { console.table(d3.select(this)) });
