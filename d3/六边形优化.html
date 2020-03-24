@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+    <script src="https://cdn.bootcss.com/d3-tip/0.9.1/d3-tip.js"></script>
+</head>
+<style>
+    html,body {
+        margin: 0;
+        padding: 0;
+    }
+    #svg {
+        border:1px solid red ;
+    }
+</style>
+<body>
+    <div id="svg"></div>
+</body>
+<script>
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .html((d) => `${d}`);
+   //SVG sizes and margins
+    var margin = {
+        top: 50,
+        right: 20,
+        bottom: 20,
+        left: 50
+    },
+    width = 850,
+    height = 350;
+    // 六边形行数与列数
+    var MapColumns = 30,
+        MapRows = 20;
+
+    // 适合屏幕最大的六边形半径
+    var hexRadius = d3.min([width/((MapColumns + 0.5) * Math.sqrt(3)),
+        height/((MapRows + 1/3) * 1.5)]);
+    // 计算每一个六边形中心点坐标
+    var points = [];
+    for (var i = 0; i < MapRows; i++) {
+        for (var j = 0; j < MapColumns; j++) {
+            var x = hexRadius * j * Math.sqrt(3)
+            // 奇数行坐标
+            if(i%2 === 1) x += (hexRadius * Math.sqrt(3))/2
+            var y = hexRadius * i * 1.5
+            points.push([x,y])
+        }
+    }
+
+    var svg = d3.select('#svg').append('svg')
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr('cursor', (d) => 'pointer')
+        .call(tip);
+
+    // 设置六边形半径
+    var hexbin = d3.hexbin().radius(hexRadius);
+
+    // 绘制六边形
+    svg.append("g")
+        .selectAll(".hexagon")
+        .data(hexbin(points))
+        .enter().append("path")
+        .attr("class", "hexagon")
+        .attr("d", function (d) {
+            return "M" + d.x + "," + d.y + hexbin.hexagon();
+        })
+        .attr("stroke", "white")
+        .attr("stroke-width", "1px")
+        .style("fill", "teal")
+        .on("mouseover", tip.show)
+        .on("mouseout", tip.hide)
+        .on("click", d => { console.table(d3.select(this)) });
+</script>
+</html>
