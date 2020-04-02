@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+    <script src="https://cdn.bootcss.com/d3-tip/0.9.1/d3-tip.js"></script>
+</head>
+<style>
+    html,body {
+        margin: 0;
+        padding: 0;
+    }
+    #svg {
+        border:1px solid red ;
+    }
+</style>
+<body>
+    <div id="svg"></div>
+</body>
+<script>
+    var width = 3000,
+        height = 800;
+    // 六边形行数与列数
+    var columns = 10,
+        rows = 10;
+
+    // 适合屏幕最大的六边形半径
+    var radius = 12;
+    // 计算每一个六边形中心点坐标
+    var points = [];
+    for (var i = 1; i <= columns; i++) {
+        for (var j = 1; j <= rows; j++) {
+            var x = radius * Math.sqrt(3) * (i - 1/2);
+            var y = radius * (2 * j - 1);
+            if (j % 4 !== 0) {
+                points.push([x,y]);                   
+            }
+        }
+    }
+
+    var svg = d3.select('#svg').append('svg')
+        .attr("width", width)
+        .attr("height", height);
+    // 设置六边形半径
+    var hexbin = d3.hexbin().radius(radius);
+
+    // 绘制六边形
+    svg.selectAll(".hexagon")
+        .data(points)
+        .enter().append("path")
+        .attr("class", "hexagon")
+        .attr("d", function (d) {
+            console.log(d);
+            return "M" + d[0] + "," + d[1] + hexbin.hexagon();
+        })
+        .attr("stroke", "green")
+        .attr("stroke-width", "1px")
+        .style("fill", "url(#gradient)");
+</script>
+</html>

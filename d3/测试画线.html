@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+    <script src="https://cdn.bootcss.com/d3-tip/0.9.1/d3-tip.js"></script>
+</head>
+<style>
+    html,body {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<body>
+    <div id="svg"></div>
+</body>
+<script>
+    //  初始化svg画布
+     const svg = d3.select('#svg').append('svg')
+        .attr('width', 600)
+        .attr('height', 400)
+        .attr('cursor', (d) => 'pointer')
+        .style('border', '1px solid red');
+        svg.append('path').attr('d', d => `
+                M 100 25
+                L 10 75
+                L 60 75
+                L 10 25"
+                stroke="red"
+                stroke-width="2"
+                fill="transparent"`);
+</script>
+</html>
