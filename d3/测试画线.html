@@ -24,13 +24,44 @@
         .attr('height', 400)
         .attr('cursor', (d) => 'pointer')
         .style('border', '1px solid red');
-        svg.append('path').attr('d', d => `
-                M 100 25
-                L 10 75
-                L 60 75
-                L 10 25"
-                stroke="red"
-                stroke-width="2"
-                fill="transparent"`);
+        var columns = 10;
+        var rows = 10;
+        var r = 20;
+        // 计算每一个六边形中心点坐标
+        const points = [];
+        for (let i = 1; i <= columns; i += 1) {
+            for (let j = 1; j <= rows; j += 1) {
+                let x = r * (2 * i - 1);
+                let y = r * Math.sqrt(3) * (j - 1/2);
+                // 奇数行坐标
+                if (i % 4 !== 0) {
+                    points.push([x, y]);
+                };
+            }
+        }
+        svg.append('g')
+        .selectAll('.hexagon')
+        .data(points)
+        .enter()
+        .append('path')
+        .attr('class', 'hexagon')
+        .attr('d', d => {
+            console.table({x: d[0], y: d[1]});
+            return `${createHexbin(r, d[0], d[1])}`
+        })
+        .attr('stroke', 'rgba(0,0,0,0.5)')
+        .attr('stroke-width', '0.5px')
+        .style('fill', 'transparent');
+
+        function createHexbin(r, x, y) {
+            var c1 = `M ${r/2 + x} ${Math.sqrt(3)*r/2+y} `;
+            var c2 = `L ${r + x} ${y} `;
+            var c3 = `L ${r/2 + x} ${(-Math.sqrt(3)*r)/2+y} `;
+            var c4 = `L ${-r/2 + x} ${(-Math.sqrt(3)*r)/2+y} `;
+            var c5 = `L ${-r + x} ${y} `;
+            var c6 = `L ${-r/2 + x} ${Math.sqrt(3)*r/2+y} `;
+            var c7 = `L ${r/2 + x} ${Math.sqrt(3)*r/2+y} `;
+            return `${c1+c2+c3+c4+c5+c6+c7} `;
+        }
 </script>
 </html>
