@@ -33,9 +33,12 @@
         height: 200px;
         background: linear-gradient(-90deg,rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 1%, transparent 1%, transparent 100%),
          linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 50%, transparent 50%, transparent 99%),
+         linear-gradient(-90deg,transparent 1%, transparent 99%, rgba(255, 255, 255, 1) 99%),
+         linear-gradient(-90deg,rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 1%, transparent 1%, transparent 100%),
+         linear-gradient(0deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 50%, transparent 50%, transparent 99%),
          linear-gradient(-90deg,transparent 1%, transparent 99%, rgba(255, 255, 255, 1) 99%);
-        background-size: 100% 2px;
-        background-position: 100% 100%;
+        background-size: 100% 2px, 100% 2px;
+        background-position:0% 0%, 100% 100%;
         background-repeat: no-repeat;
     }
     .div4 {
@@ -61,16 +64,26 @@
         width: 200px;
         height: 200px;
         background: 
-        linear-gradient(90deg, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 50%) no-repeat,
-        linear-gradient(0, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 50%) no-repeat,
-        linear-gradient(0, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 50%) no-repeat,
-        linear-gradient(90deg, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 50%) no-repeat,
-        linear-gradient(0, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 50%) no-repeat,
-        linear-gradient(0, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 50%) no-repeat;
-    background-size: 100% 2px, 2px 10px, 2px 10px, 100% 2px, 2px 10px, 2px 10px;
-    background-position: 0 0, 100% 0%, 100% 100%, 0 100%, 0 100%, 0 0;
-}
-       
+            linear-gradient(90deg, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 50%) no-repeat,
+            linear-gradient(0, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 50%) no-repeat,
+            linear-gradient(0, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 50%) no-repeat,
+            linear-gradient(90deg, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 50%) no-repeat,
+            linear-gradient(0, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 50%) no-repeat,
+            linear-gradient(0, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 50%) no-repeat;
+        background-size: 100% 2px, 2px 10px, 2px 10px, 100% 2px, 2px 10px, 2px 10px;
+        background-position: 0 0, 100% 0%, 100% 100%, 0 100%, 0 100%, 0 0;
+    }
+       .div6 {
+            margin-left: 10px;
+            width: 200px;
+            height: 200px;
+            background: 
+            linear-gradient(-90deg,rgba(255, 255, 255, 1) 1%, rgba(246, 244, 247, 0.05) 1%, rgba(246, 244, 247, 0.05) 99%, rgba(255, 255, 255, 1) 99%)  no-repeat,
+            linear-gradient(-90deg,rgba(246, 244, 247, 0.05)0%, rgba(246, 244, 247, 0.05) 100%)  no-repeat,
+            linear-gradient(-90deg,rgba(255, 255, 255, 1) 1%, rgba(246, 244, 247, 0.05) 1%, rgba(246, 244, 247, 0.05) 99%, rgba(255, 255, 255, 1) 99%)  no-repeat;
+            background-size: 100% 2px, 100% 198px, 100% 2px;
+            background-position: 0 0, 50% 50%, 100% 100%;
+        }
 </style>
 <body style="background-color: rgba(0, 0, 0, 0.5); display: flex;">
     <div class="my-border">
@@ -80,5 +93,6 @@
     <div class="div3"></div>
     <div class="div4"></div>
     <div class="div5"></div>
+    <div class="div6"></div>
 </body>
 </html>
