@@ -46,10 +46,9 @@
         .append('path')
         .attr('class', 'hexagon')
         .attr('d', d => {
-            console.table({x: d[0], y: d[1]});
             return `${createHexbin(r, d[0], d[1])}`
         })
-        .attr('stroke', 'rgba(0,0,0,0.5)')
+        .attr('stroke', 'rgba(255,255,255,0.5)')
         .attr('stroke-width', '0.5px')
         .style('fill', 'transparent');
 
