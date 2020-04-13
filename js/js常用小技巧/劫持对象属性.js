@@ -1,7 +1,7 @@
 var obj = { visible: false };
-
+obj.__proto__.name = 'zhang';
 function watch(obj) {
-    Object.defineProperty(obj, 'visible', {
+    Object.defineProperty(obj, 'name', {
         enumerable: true,
         configurable: true,
         get: function () {
@@ -15,3 +15,4 @@ function watch(obj) {
 }
 watch(obj);
 obj.visible = true;
+

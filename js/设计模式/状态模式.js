@@ -45,6 +45,7 @@ var MarryState = function() {
             console.log('触发一次动作');
             // 遍历内部状态保存的动作
             for(var i in _currentState) {
+                console.log(_currentState);
                 // 如果该动作存在则执行
                 states[i] && states[i]();
             }
@@ -61,8 +62,5 @@ var MarryState = function() {
 
 var marry = new MarryState();
 marry.change('jump', 'shoot')
-    .goes()
-    .change('shoot')
-    .goes()
     .goes();
 
