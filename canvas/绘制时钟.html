@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <canvas id="clock" height="200px" width="200px"></canvas>
+    </div>
+</body>
+<script>
+window.onload = function () {
+    var dom=document.getElementById("clock");
+    var ctx=dom.getContext('2d');
+    var width=ctx.canvas.width;
+    var height=ctx.canvas.height;
+    var r=width / 2;
+
+    var rem=width/200;
+
+    function drawBackground() {
+        ctx.beginPath();
+        ctx.lineWidth=10 * rem;
+        ctx.arc(0, 0, r-ctx.lineWidth / 2, 0, 2*Math.PI, false);
+        ctx.strokeStyle="#eacd76";
+        ctx.stroke();
+        
+        var hours =[3,4,5,6,7,8,9,10,11,12,1,2];
+        ctx.font=18 * rem +'px Arial';
+        ctx.textAlign="center";
+        ctx.textBaseline="middle";
+        hours.forEach(function (number ,i ) {
+            var rad= 2 * Math.PI / 12 * i;
+            var x= Math.cos(rad) * (r - 30 * rem);
+            var y= Math.sin(rad) * (r - 30 * rem);
+            ctx.fillText(number,x ,y);
+        });
+
+        for(var i=0 ;i<60 ;i++){
+            var rad= 2 * Math.PI / 60 * i;
+            var x= Math.cos(rad) * (r - 18 * rem);
+            var y= Math.sin(rad) * (r - 18 * rem);
+            ctx.beginPath();//起始一条路径，或重置当前路径
+            if(i%5==0){
+                ctx.fillStyle ='#000';
+                ctx.arc(x, y, 2 * rem, 0, 2*Math.PI, false);
+            }else{
+                ctx.fillStyle ='#ccc';
+                ctx.arc(x, y, 2 * rem, 0, 2*Math.PI, false);
+            }
+            ctx.fill();
+        }
+    }
+    //x=r * cosT  y=
+
+    function drawHour(hour , minute) {
+        ctx.save();
+
+        ctx.beginPath();//起始一条路径，或重置当前路径
+        var rad= 2 * Math.PI /12 *hour,
+            mard= 2 * Math.PI /12 /60 * minute;
+        ctx.rotate(rad + mard);
+        ctx.lineCap='round';
+        ctx.lineWidth=6 * rem;
+        ctx.moveTo(0,10 * rem);
+        ctx.lineTo(0,-r/2);
+        ctx.strokeStyle="#f2be45";
+        ctx.stroke();
+
+        ctx.restore();
+    }
+
+    function drawMinute(minute) {
+        ctx.save();
+
+        ctx.beginPath();
+        var rad= 2 * Math.PI /60 *minute;
+        ctx.rotate(rad);
+        ctx.lineCap='round';
+        ctx.lineWidth=3;
+        ctx.moveTo(0,10 * rem);
+        ctx.lineTo(0,-r + 30 * rem);
+        ctx.strokeStyle="#f2be45";
+        ctx.stroke();
+
+        ctx.restore();
+    }
+
+    function drawSecond(second) {
+        ctx.save();
+
+        ctx.beginPath();
+        ctx.fillStyle='#c14543';
+        ctx.lineWidth=1;
+        var rad= 2 * Math.PI /60 *second;
+        ctx.rotate(rad);
+        ctx.moveTo(-2 * rem,20 * rem);
+        ctx.lineTo(2 * rem ,20 * rem);
+        ctx.lineTo(1,-r + 18* rem);
+        ctx.lineTo(-1,-r + 18* rem);
+        ctx.fill();
+
+        ctx.restore();
+    }
+
+    function drawDot() {
+        ctx.beginPath();
+        ctx.fillStyle = '#fff';
+        ctx.arc(0,0,3 * rem,0,2*Math.PI,false);
+        ctx.fill();
+    }
+
+    function draw() {
+        ctx.clearRect(0,0,width,height);//在给定的矩形内清除指定的像素
+
+        ctx.save();//**保存当前环境的状态(此时的坐标原点(0,0)还是左上角)
+
+        ctx.translate(r,r);//重新映射画布上的 (0,0) 位置
+        //此时的坐标原点(0,0)已经移至到(r,r)
+
+        var now=new Date(),
+            hour=now.getHours(),
+            minute=now.getMinutes(),
+            seconed=now.getSeconds();
+        drawBackground();
+        drawHour(hour , minute);
+        drawMinute(minute);
+        drawSecond(seconed);
+        drawDot();
+
+        ctx.restore();//**返回之前保存过的路径状态和属性;
+        //目的：clearRect(0,0,width,height);清除矩形的(0,0)点还原为左上角
+    }
+    setInterval(function(){
+        draw()
+    },1000);
+};
+</script>
+</html>
