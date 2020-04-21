@@ -9,9 +9,9 @@
         body,html {
             width: 100%;
             height: 100%;
-            display: flex;
+            /* display: flex;
             justify-content: center;
-            align-content: center;
+            align-content: center; */
         }
         .btn {
             height: 30px;
@@ -51,11 +51,40 @@
                 transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0);
             }
         }
+        .bounce-down {
+            animation: bounceDown 1s cubic-bezier(0.42, 0.0, 0.58, 1.0) 0.05s 1 normal both;
+        }
+        @keyframes bounceDown {
+            0% {
+                transform: translate3d(0, -300px, 0);
+            }
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        .one-level-pop {
+            animation: popPanel 1s ease-in-out 0.05s 1 normal both;
+        }
+        @keyframes popPanel {
+            0% {
+                width: 0px;
+                height: 0px;
+                opacity: 0;
+            }
+
+            100% {
+
+                width: 300px;
+                height: 300px;
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
     <button onclick="showOrHide()" class="btn">点击显隐</button>
-    <div class="test zoom-in-up">
+    <button onclick="showOrHide2()" class="btn">点击下坠</button>
+    <div class="test one-level-pop">
 
     </div>
 </body>
@@ -68,6 +97,16 @@
             enter = false;
         } else {
             dom.classList.remove('zoom-out-down');
+            enter = true;
+        }
+    };
+    function showOrHide2() {
+        var dom = document.getElementsByClassName('test')[0];
+        if (enter) {
+            dom.classList.add('bounce-down');
+            enter = false;
+        } else {
+            dom.classList.remove('bounce-down');
             enter = true;
         }
     };
