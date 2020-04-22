@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+            background: rgb(163, 161, 161);
+            margin: 0;
+            padding: 0;
+        }
+        .test {
+            position: absolute;
+            left: 20%;
+            width: 30px;
+            height: 30px;
+            background: #f00;
+            border-radius: 50%;
+        }
+        .btn {
+            width: 50px;
+            height: 50px;
+            background: rgb(60, 255, 0);
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="btn">click</div>
+    <div class="test"></div>
+</body>
+<script>
+    var dom = document.querySelector('.btn');
+    var interval = null;
+    dom.addEventListener('click', ()=> {
+        if (ball) {
+            ball = null;
+        }
+        if (interval) {
+            clearInterval(interval);
+        }
+        var ball = document.querySelector('.test');
+        var x = 0;
+        interval = setInterval(() => {
+            x += 0.1;
+            ball.style.transform= 'translate3d(' +x*100 + 'px,' + 50*Math.cos(x * Math.PI) + 'px,'+'0px)';
+        }, 100);
+    });
+</script>
+</html>
