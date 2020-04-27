@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    html,body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .test {
+        width: 300px;
+        height: 300px;
+        border: 1px solid red;
+    }
+    </style>
+
+</head>
+<body>
+    <div class="test">
+
+    </div>
+</body>
+<script>
+var flag = true;
+
+setTimeout(()=> {
+    dom.style.display = 'block';
+    flag = true;
+}, 5000);
+var dom = document.querySelector('.test');
+/////////////*********** MutationObserver *************//////////////////////////
+var config = {attributes: true,childList: false,subtree: false};
+
+// 回调函数
+var mCallBack = (mList) => {
+    for (var m of mList) {
+        console.table({'type':m.type, 'value': m});
+
+    }
+
+}
+
+var observer = new MutationObserver(mCallBack);
+
+observer.observe(dom, config);
+
+
+
+
+
+///////////////////////////////////////////////////////
+dom.addEventListener('click', () => {
+    if (flag) {
+        dom.style.display = 'none';
+        flag = false;
+    }
+});
+</script>
+</html>

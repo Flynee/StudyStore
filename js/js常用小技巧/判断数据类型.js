@@ -8,7 +8,7 @@ function judge_data_type(target, type) {
     return type ? data_type === type : data_type;
 }
 
-var result = judge_data_type(1234, "string");
+    var result = judge_data_type({d: 1234}, "object");
 var result2 = judge_data_type(new Date());
 console.log(result);
 console.log(result2);
