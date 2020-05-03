@@ -1,0 +1,29 @@
+# dependencies
+/**/node_modules
+gulpfile.js
+/dist
+/*.zip
+/*.rar
+# IDE - VSCode
+# .vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# compiled output
+/dist
+/dist.*
+
+# IDEs and editors
+.project
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.history
+build_javascript
+yarn.lock

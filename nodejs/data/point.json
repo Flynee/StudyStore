@@ -1,0 +1,25 @@
+{
+    "success":true,
+    "message":"查询权限成功",
+    "time":"2020-04-29 15:54:09",
+    "data":[
+        {
+            "authority":"edit",
+            "name":"阿克苏大数据中心,单位3",
+            "cOutId":6,
+            "position":"80.25354,41.140457"
+        },
+        {
+            "authority":"edit",
+            "name":"智慧工地1,单位3",
+            "cOutId":5,
+            "position":"87.584938,43.838737"
+        },
+        {
+            "authority":"edit",
+            "name":"克拉玛依市综合交通枢纽客运站,单位3",
+            "cOutId":34,
+            "position":"84.959473,45.4683"
+        }
+    ]
+}
