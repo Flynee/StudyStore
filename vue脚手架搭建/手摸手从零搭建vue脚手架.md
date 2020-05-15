@@ -11,3 +11,12 @@
     - 安装依赖
         - yarn add vuex
         - yarn add vue-router
+
+## 开启vue资源监视
+    - 安装依赖
+        - yarn add speed-measure-webpack-plugin -D
+        - yarn add webpack-bundle-analyzer -D
+
+## 使用ES6语法
+    - 安装依赖
+        - 
