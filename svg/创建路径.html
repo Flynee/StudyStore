@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        M=moveto
+        L=lineto
+        H=horizontal lineto
+        V=vertical lineto
+        C=curveto
+        S=smooth curveto
+        Q=quadratic Bézier curve (二次贝塞尔曲线) 
+        T=smooth quadratic Bézier curveto (平滑二次贝塞尔曲线) 
+        A=elliptical Arc
+        Z=closepath
+
+        上面字母大写表示绝对路径，小写表示相对位置
+    -->
+    <svg>
+        <path d="M150 0 L75 200 L225 200 Z"
+            style="fill: darkgoldenrod; stroke: darkgreen;"/>
+    </svg>
+    <svg>
+        <path id="lineABC" d="M100 350 l150 -300 l150 300 l250Z 300 Z" fill="none" stroke="red"/>
+        <path d="M 100 350 q 150 -300 300 0" stroke="blue"
+            stroke-width="5" fill="none" />
+    </svg>
+</body>
+</html>
