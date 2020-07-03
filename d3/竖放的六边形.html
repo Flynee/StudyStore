@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<style>
+    html,body {
+        margin: 0;
+        padding: 0;
+    }
+    #svg {
+        border:1px solid red ;
+    }
+</style>
+<body>
+    <div id="svg"></div>
+</body>
+<script>
+  window.onload = () =>{
+            const that = this;
+            const width = 100;
+            const height = 100;
+            const r = 20;
+            const points = [
+                [50, 50],
+            ];
+            const svg = d3.select('#svg')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .attr('cursor', 'pointer');
+
+            svg.selectAll('.menu')
+                .data(points)
+                .enter()
+                .append('path')
+                .attr('d', d => `${that.createHexbin(r, d[0], d[1])}`)
+                .attr('stroke', 'rgba(255,0,0,0.5)')
+                .attr('stroke-width', '0.5px')
+                .style('fill', 'none');
+        }
+        // 创建六个点
+        function createHexbin(r, x, y) {
+            const c1 = `M ${x} ${r + y}`;
+            const c2 = `L ${(Math.sqrt(3) * r) / 2 + x} ${r / 2 + y} `;
+            const c3 = `L ${(Math.sqrt(3) * r) / 2 + x} ${(-r / 2 + y)} `;
+            const c4 = `L ${x} ${-r + y}`;
+            const c5 = `L ${-((Math.sqrt(3) * r) / 2) + x} ${(-r / 2 + y)} `;
+            const c6 = `L ${-((Math.sqrt(3) * r) / 2) + x} ${(r / 2 + y)} `;
+            const c7 = 'Z';
+            return `${c1 + c2 + c3 + c4 + c5 + c6 + c7} `;
+        }
+</script>
+</html>
