@@ -32,7 +32,7 @@
 
 # 自动生成HTML模板文件
     - 安装依赖
-        - yarn add html-webpack-plugin -D
+        - yarn add html-wwebpack-plugin -D
         - yarn add html-loader -D
 
 # 处理CSS/SCSS文件(解析、浏览器适配、提取、打包、压缩)
