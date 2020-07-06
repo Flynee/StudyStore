@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "nodejs-websocket": "^1.7.2",
+    "uuid": "^8.2.0"
+  }
+}

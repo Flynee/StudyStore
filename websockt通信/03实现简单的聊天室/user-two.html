@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html,body {
+        width: 100%;
+        height: 100%;
+        background-color: #eee;
+    }
+    .send-message-box {
+        width: 300px;
+        height: 50px;
+        display: flex;
+        box-sizing: border-box;
+    }
+    .message-box-content {
+        width: 250px;
+        height: 100%;
+        cursor: text;
+        border: solid 1px green;
+    }
+    .message-box-btn {
+        width: 40px;
+        margin-left: auto;
+        height: 100%;
+        border: cyan 1px dotted;
+        cursor: pointer;
+        user-select: none;
+    }
+    .message-room {
+        width: 300px;
+        height: 1000px;
+        border: greenyellow solid 1px;
+        overflow-y: scroll;
+    }
+</style>
+<body>
+    <div class="send-message-box">
+        <div class="message-box-content" ></div>
+        <div class="message-box-btn">发送</div>
+    </div>
+    <div class="message-room"></div>
+</body>
+<script>
+    window.onload = function() {
+        var socket = new WebSocket('ws://localhost:8888');
+
+        // send
+        var dom = document.querySelector('.message-box-btn');
+        dom.addEventListener('click', () => {
+            var text = document.querySelector('.message-box-content').innerHTML;
+            socket.send(text);
+            document.querySelector('.message-box-content').innerHTML = '';
+        });
+
+        // listen
+        socket.addEventListener('message', (message) => {
+            var alltext = document.querySelector('.message-room').innerHTML+message.data;
+            console.log(message);
+            document.querySelector('.message-room').innerHTML = alltext;
+        });
+
+        var contentDom = document.querySelector('.message-box-content');
+        contentDom.addEventListener('click', ()=> {
+            if(contentDom.contentEditable !== true) {
+                // 设置元素可编辑
+                contentDom.contentEditable = true;
+                // 获取光标
+                contentDom.focus();
+            }
+        });
+
+    }
+</script>
+</html>
