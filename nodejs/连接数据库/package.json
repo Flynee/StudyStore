@@ -1,5 +1,5 @@
 {
-  "name": "geobuf-study",
+  "name": "connect-mysql",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -9,11 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.2",
-    "geobuf": "^3.0.1",
-    "pbf": "^3.2.1"
-  },
-  "script": {
-      "serve": "node ./app.js"
+    "mysql": "^2.18.1"
   }
 }
