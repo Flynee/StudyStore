@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var script = document.createElement("script");
+    script.src = "http://192.168.202.102:3000/test?user=zhang&callback=handleCallback";
+    document.head.append(script);
+    // 处理返回数据
+    function handleCallback(res) {
+        console.log(res);
+    }
+</script>
+</html>
