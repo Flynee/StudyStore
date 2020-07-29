@@ -1,4 +1,4 @@
-## AJAX使用解析（Asynchronous Javascript And XML）
+# AJAX使用解析（Asynchronous Javascript And XML）
 
 > - Ajax原理简单来说，就是通过XMLHttpRequest对象向服务器发送异步请求
 >
@@ -6,7 +6,7 @@
 
 
 
-### 发送一个ajax请求
+## 发送一个ajax请求
 
 ```javascript
 function sendRequest() {
@@ -38,7 +38,7 @@ function sendRequest() {
 
 
 
-### 请求方法（GET、POST）
+## 请求方法（GET、POST）
 
 > xmlhttp.open(method, url, async);
 >
@@ -54,7 +54,7 @@ function sendRequest() {
 
 
 
-### onreadystatechange 事件
+## onreadystatechange 事件
 
 > 每当xmlhttp 实例属性<strong>readyState</strong>值发生变化时，就会触发<em>onreadystatechange</em>方法
 >
