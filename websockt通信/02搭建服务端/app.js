@@ -5,7 +5,7 @@ var PORT = 8888;
 // 创建websockt服务
 // 只要有用户连接，就会创建一个connect连接对象
 const server = ws.createServer(connect => {
-    // console.log('有人连接上来了', connect);
+    console.log('有人连接上来了');
     // // 监听用户发送的数据
     // connect.on('text', function(data) {
     //     console.log(data);
@@ -20,7 +20,7 @@ const server = ws.createServer(connect => {
     }, 3000);
     // 处理异常
     connect.on('error', function(...arg) {
-        console.log('------------ :)');
+        // console.log('------------ :)');
     });
 });
 server.listen(PORT, () => {

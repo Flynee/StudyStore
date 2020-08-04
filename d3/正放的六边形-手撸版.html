@@ -38,8 +38,25 @@
                 .enter()
                 .append('path')
                 .attr('d', d => `${that.createHexbin(r, d[0], d[1])}`)
-                .attr('stroke', 'rgba(255,0,0,0.5)')
-                .attr('stroke-width', '0.5px')
+                .attr('stroke', 'rgba(0,0,0,1)')
+                .attr('stroke-width', '1.5px')
+                .style('fill', 'rgba(255, 181, 21, 1)');
+        
+            svg.selectAll('.menu')
+                .data(points)
+                .enter()
+                .append('path')
+                .attr('d', d => `${that.createHexbin(21.5, d[0], d[1])}`)
+                .attr('stroke', 'rgba(255, 181, 21, 1)')
+                .attr('stroke-width', '1.5px')
+                .style('fill', 'none');
+            svg.selectAll('.menu')
+                .data(points)
+                .enter()
+                .append('path')
+                .attr('d', d => `${that.createHexbin(30, d[0], d[1])}`)
+                .attr('stroke', 'rgba(255, 181, 21, 0.5)')
+                .attr('stroke-width', '1px')
                 .style('fill', 'none');
         }
         // 创建六个点
