@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+    <style>
+        * {
+            width: 100%;
+            height: 100%;
+        }
+        .btn {
+            width: 80px;
+            height: 30px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+    </style>
+<body>
+    <div class="btn">send</div>
+</body>
+<script>
+    var dom = document.querySelector('.btn');
+    dom.addEventListener('click', () => {
+        window.parent.postMessage('hello:)!', 'http://192.168.189.1:5555');
+    });
+    window.onmessage = (ev)=> {
+        console.log('父级信息为：'+ev.data);
+    }
+</script>
+</html>
