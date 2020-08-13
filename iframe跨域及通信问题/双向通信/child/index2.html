@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+    <style>
+        * {
+            width: 100%;
+            height: 100%;
+        }
+        .btn {
+            width: 80px;
+            height: 30px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+    </style>
+<body>
+    <div class="btn">send</div>
+</body>
+<script>
+    document.domain = '192.168.189.1';
+    var dom = document.querySelector('.btn');
+    dom.addEventListener('click', () => {
+        // var url = window.location.href;
+        // console.log(decodeURI(url));
+        window.parent.location.hash = '#'+Math.random() * 123123;
+    });
+    window.onhashchange = (ev)=> {
+        // var url = window.location.href;
+        // console.log(decodeURI(url));
+        var url = ev.newURL;
+        var param = url.split('#')[1];
+        console.log('父级信息为' + param);
+    }
+</script>
+</html>
