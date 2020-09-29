@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html,body {
+        width: 100%;
+        height: 100%;
+    }
+    .line {
+        width: 200px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.3);
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+<body>
+    <div class="line"></div>
+</body>
+<script>
+    //通过createElementNS创建svg元素并设置属性
+		var svg=document.createElementNS('http://www.w3.org/2000/svg','svg'); 	
+		svg.setAttribute("style","width:100%;height:100%;");
+		// svg.setAttribute("viewBox","0 0 100% 100%");				
+		//创建矩形元素并设置属性
+		var rect=document.createElementNS('http://www.w3.org/2000/svg','rect'); 
+		rect.setAttribute("x","0");
+		rect.setAttribute("y","20");
+		rect.setAttribute("width","1");
+		rect.setAttribute("height","20");
+		rect.setAttribute("style","fill:#ff6666;stroke-width:1;stroke:rgb(255,0,0);");
+
+		var animation =document.createElementNS('http://www.w3.org/2000/svg','animateTransform'); 
+        animation.setAttribute("attributeName", "transform");
+        animation.setAttribute("attributeType", "XML");
+        animation.setAttribute("type", "translate");
+        animation.setAttribute("begin", "0s");
+        animation.setAttribute("dur", "0.5s");
+        // animation.setAttribute("calcMode", "spline");
+        // animation.setAttribute("keySplines", "0.4, 0, 0.2, 1; 0 0 1 1");
+        animation.setAttribute("fill", "freeze");
+		var polygon=document.createElementNS('http://www.w3.org/2000/svg','polygon'); 
+        polygon.setAttribute("points", "1 0 11 0 6 6");
+        polygon.setAttribute("style", "stroke:blue; fill: red;");
+
+		var animation2 =document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+        animation2.setAttribute("attributeName", "width");
+        animation2.setAttribute("attributeType", "XML");
+        animation2.setAttribute("begin", "0s");
+        animation2.setAttribute("dur", "0.5s");
+        // animation2.setAttribute("calcMode", "spline");
+        // animation2.setAttribute("keySplines", "0.4, 0, 0.2, 1; 0 0 1 1");
+        animation2.setAttribute("fill", "freeze");
+
+        
+        polygon.appendChild(animation);
+        rect.appendChild(animation2);
+        svg.appendChild(polygon);
+        svg.appendChild(rect);
+		
+		//SVG元素添加到页面内显示
+        const dom = document.querySelector('.line');
+		dom.appendChild(svg);
+        const points = polygon.getAttribute('points').match(/\d/g);
+        const x1 = points[0];
+        const y1 = points[1];
+        updateAnimation(animation, x1, y1, 100, y1);
+        animation2.setAttribute("from", 1);
+        animation2.setAttribute("to", 100);
+        // setInterval(()=> {
+        //     x = 200 * Math.random();
+        //     rect.setAttribute("width", x);
+        // }, 1000);
+
+
+        function getPoints() {
+            const x1 = 1 + 200 * Math.random();
+            const y1 =  0;
+            const x2 = x1 + 10;
+            const y2 = y1;
+            const x3 = x1 + 5;
+            const y3 = y1 + 6;
+            return `${x1} ${y1} ${x2} ${y2} ${x3} ${y3}`;
+        }
+
+        function updateAnimation(animation, x1, y1, x2, y2) {
+            console.log(x1, y1, x2, y2);
+            animation.setAttribute("from", `${x1} ${y1}`);
+            animation.setAttribute("to", `${x2} ${y2}`);
+        }
+
+
+</script>
+</html>
