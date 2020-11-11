@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--
+        形成块级上下文有如下几个条件：
+            1.根元素
+            2.position 为absolute, fixed
+            3.float元素
+            5.display 为inline-block, inline-flex, inlibe-grid, inline-table, table-caption
+    -->
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+        }
+        .common {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+        .div1, .div2 {
+            margin: 20px;
+        }
+        .div3 {
+            width: 50px;
+            background: red;
+            float: left;
+            margin: 20px;
+        }
+        .div4 {
+            margin: 20px;
+            background: cadetblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="common div1">我的margin=20px</div>
+    <div class="common div2">我的margin也=20px</div>
+    <div class="common div3">我的float=left</div>
+    <div class="common div4"></div>
+</body>
+</html>
