@@ -1,0 +1,54 @@
+{
+    "code": 200,
+    "data": {
+         "jgsyqk": {
+              "sumjg": 17,
+              "zy": 8,
+              "yzy": 10,
+              "wzy": 11
+         },
+         "glxlfhqk": [
+              {
+                   "name": "广西路变电站",
+                   "dlxe": "400A",
+                   "zdfh": "6263KVA",
+                   "kyrl": "4822KVA"
+              },
+              {
+                   "name": "南京路变电站",
+                   "dlxe": "400A",
+                   "zdfh": "6263KVA",
+                   "kyrl": "4822KVA"
+              }
+         ],
+         "gbfhqk": {
+              "zs": "4",
+              "zrl": "4000kVA",
+              "zdfh": "6263KVA",
+              "kyrl": "4822KVA"
+         },
+         "zddlqk": [
+              {
+                   "name": "广西路变电站",
+                   "data": [
+                        160,
+                        90,
+                        100,
+                        89,
+                        230
+                   ]
+              },
+              {
+                   "name": "南京路变电站",
+                   "data": [
+                        160,
+                        90,
+                        100,
+                        89,
+                        230
+                   ]
+              }
+         ]
+    },
+    "status": "success"
+}

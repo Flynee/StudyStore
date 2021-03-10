@@ -4,76 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 </head>
 <style>
+     ::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
     html,body {
         width: 100%;
         height: 100%;
-        background-color: #eee;
+        margin: 0;
+        padding: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .mgs-box {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 50%;
+        border: 1px solid green;
+
+    }
+    .message-room {
+        background: rgba(0, 0, 0, 0.6);
+        width: 100%;
+        height: calc(100% - 50px);
+        border-bottom: 1px solid green;
+        overflow-y: scroll;
+        font-size: 12px;
+        color: green;
+        font-weight: bold;
     }
     .send-message-box {
-        width: 300px;
+        width: 100%;
         height: 50px;
         display: flex;
         box-sizing: border-box;
+        align-items: center;
+        justify-content: space-around;
     }
     .message-box-content {
-        width: 250px;
+        display: block;
+        box-sizing: border-box;
+        width: calc(100% - 80px);
         height: 100%;
         cursor: text;
-        border: solid 1px green;
+        color: green;
+        line-height: 50px;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 2px 5px;
+        outline-style: none ;
+        background: transparent;
+        border: 0px;
     }
     .message-box-btn {
-        width: 40px;
-        margin-left: auto;
-        height: 100%;
-        border: cyan 1px dotted;
+        width: 60px;
+        height: 30px;
+        border: 1px solid green;
         cursor: pointer;
         user-select: none;
+        color: black;
+        font-weight: bold;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 5px;
     }
-    .message-room {
-        width: 300px;
-        height: 1000px;
-        border: greenyellow solid 1px;
-        overflow-y: scroll;
-    }
+    
 </style>
 <body>
-    <div class="send-message-box">
-        <div class="message-box-content" ></div>
-        <div class="message-box-btn">发送</div>
+    <div class="mgs-box">
+        <div class="message-room"></div>
+        <div class="send-message-box">
+            <input class="message-box-content"/>
+            <div class="message-box-btn">Send</div>
+        </div>
     </div>
-    <div class="message-room"></div>
 </body>
 <script>
+    var userip = returnCitySN["cip"];
     window.onload = function() {
-        var socket = new WebSocket('ws://localhost:8888');
+        var socket = new WebSocket('ws://192.168.202.13:8888');
 
         // send
-        var dom = document.querySelector('.message-box-btn');
-        dom.addEventListener('click', () => {
-            var text = document.querySelector('.message-box-content').innerHTML;
-            socket.send(text);
-            document.querySelector('.message-box-content').innerHTML = '';
+        var send = document.querySelector('.message-box-btn');
+        send.addEventListener('click', () => {
+            sendMsg()
+        });
+        document.addEventListener('keypress', (ev) => {
+            if (ev.charCode === 13) {
+                sendMsg();
+            }
         });
 
         // listen
         socket.addEventListener('message', (message) => {
-            var alltext = document.querySelector('.message-room').innerHTML+message.data+"<br>";
-            console.log(message);
-            document.querySelector('.message-room').innerHTML = alltext;
-        });
-
-        var contentDom = document.querySelector('.message-box-content');
-        contentDom.addEventListener('click', ()=> {
-            if(contentDom.contentEditable !== true) {
-                // 设置元素可编辑
-                contentDom.contentEditable = true;
-                // 获取光标
-                contentDom.focus();
+            const data = message.data;
+            console.log(data)
+            var msg = JSON.parse(data);
+            var ip = msg.ip;
+            var text = msg.text;
+            var people = msg.people;
+            console.log(data);
+            if (ip === userip) {
+                var alltext = document.querySelector('.message-room').innerHTML+ "<div style='text-align: right'> "+ text +"：ME</div>";
+                document.querySelector('.message-room').innerHTML = alltext;
+            } else {
+                var alltext = document.querySelector('.message-room').innerHTML+ "<div style='text-align: left'> "+ people + text +"</div>";
+                document.querySelector('.message-room').innerHTML = alltext;
             }
         });
+        getSendFocus();
 
+        function getSendFocus() {
+            var contentDom = document.querySelector('.message-box-content');
+            contentDom.contentEditable = true;
+            contentDom.focus();
+        }
+        function sendMsg() {
+            var msg = {
+                ip: userip,
+                text: document.querySelector('.message-box-content').value,
+            };
+            var text = JSON.stringify(msg);
+            if (!text) return;
+            socket.send(text);
+            document.querySelector('.message-box-content').value = '';
+            getSendFocus();
+        }
     }
+    
 </script>
 </html>

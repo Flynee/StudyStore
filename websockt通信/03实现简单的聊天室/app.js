@@ -1,24 +1,38 @@
 var ws = require('nodejs-websocket');
 var uuid = require('uuid');
+// var generateRandomChineseName = require('random-chinese-name-generator');
+var { generateRandomChineseName } = require('random-chinese-name-generator');
 var PORT = 8888;
 var count = 0;
 
 var server = ws.createServer(connect => {
     count++;
-    connect.userName = `用户${uuid.v4()}`;
-
+    // connect.userName = `用户${uuid.v4()}`;
+    connect.userName = generateRandomChineseName();
+    console.log(connect);
+    const data = {
+        ip: '',
+        text: `${connect.userName}上线了  :) `,
+        people: '',
+    };
     // 当有新用户连接，要告诉所有人
-    broadcast(`傻逼${connect.userName}上线了  :) `);
+    broadcast(JSON.stringify(data));
 
     // 监听用户发送的消息
     connect.on('text', (data)=> {
-        broadcast(`傻逼${connect.userName}说：${data}`);
+        const msg = JSON.parse(data);
+        msg.people = `${connect.userName}说：`;
+        broadcast(JSON.stringify(msg));
     });
     // 监听用户关闭连接
     connect.on('close', ()=> {
         count--;
-        // 告知所有用户，有人下线
-        broadcast(`傻逼${connect.userName}下线了 :) `);
+        const data = {
+            ip: '',
+            text: `${connect.userName}下线了 :) `,
+            people: '',
+        };
+        broadcast(JSON.stringify(data));
     });
     // 处理连接异常
     connect.on('error', () => {

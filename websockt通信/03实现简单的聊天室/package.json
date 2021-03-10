@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "nodejs-websocket": "^1.7.2",
+    "random-chinese-name-generator": "0.0.3",
     "uuid": "^8.2.0"
   }
 }
