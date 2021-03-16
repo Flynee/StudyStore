@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: grey;
+            margin: 50px;
+        }
+
+        .three {
+            background: green;
+            float: left;
+        }
+
+        .four {
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+        }
+    </style>
+    <!--
+
+        规则1: 创建了BFC的元素中,在垂直方向上的margin会发生重叠。根元素<html>就是一个BFC元素 (这个可以解释margin重叠)
+        规则2: BFC元素在页面上是一个独立的容器,外面的元素和里面的元素互不影响。
+        规则3: BFC元素不会和浮动的元素重叠。(这个可以解释两栏自适应)
+        规则4: 计算BFC元素的高度时,里面浮动元素的高度也会参与计算 (用来解释overflow:hidden可以清除浮动)
+    -->
+</head>
+<body>
+    <div class="one">
+        非BFC, margin: 50px;
+    </div>
+    <div class="two">
+        非BFC, margin: 50px;
+    </div>
+    <div class="three">
+        BFC, margin: 50px;
+        float: left;
+        根据普通文档流定位，然后脱离文档流渲染
+    </div>
+    <div class="four">
+        BFC, margin: 50px;
+        overflow: hidden;
+        首先按照普通文档流定位
+    </div>
+</body>
+</html>
