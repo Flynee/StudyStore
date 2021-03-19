@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+        }
+        .shan {
+            margin: 100px auto;
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+        .btn {
+            width: 100px;
+            height: 30px;
+            cursor: pointer;
+            animation: 1s linear 0s infinite alternate change;
+        }
+        @keyframes change {
+            from {
+                background: #f00;
+                opacity: 0.3;
+            }
+            to {
+                background: #f00;
+                opacity: 1;
+
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shan"></div>
+    <div class="btn">dangerous！</div>
+</body>
+<script>
+    var dom = document.querySelector('.btn');
+    var dom2 = document.querySelector('.shan');
+    dom.addEventListener('click', ()=> {
+        var start = Date.now();
+        var id = setInterval(()=> {
+            const id2 = window.requestAnimationFrame(()=>{
+                if (dom2.style.display !== 'block') {
+                    dom2.style.display = 'block'
+                    console.log(dom2.style.display);
+                } else {
+                    dom2.style.display = 'none'
+                    console.log(dom2.style.display);
+                }
+                if (Date.now() - start >5000) {
+                    clearInterval(id)
+                    window.cancelAnimationFrame(id2);
+                    dom2.style.display = 'block'
+                }
+            });
+        }, 20);
+    });
+</script>
+</html>
