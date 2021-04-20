@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>start threejs</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <script src="../lib/three.js"></script>
+</body>
+<script>
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const geometry = new THREE.BoxGeometry();
+    const marterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, marterial);
+
+
+    scene.add(cube);
+    camera.position.set(2, 2, 2);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+    const updateScene = function() {
+
+        requestAnimationFrame(updateScene);
+        // cube.position.x +=  0.1;
+        // cube.position.y += 0.1;
+        cube.rotation.y += 0.01;
+        renderer.render(scene, camera);
+    }
+
+    updateScene();
+
+</script>
+</html>
