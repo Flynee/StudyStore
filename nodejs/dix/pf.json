@@ -1,0 +1,17 @@
+{
+    "data":[
+        {
+            "type":"point",
+            "name":"地点标识one",
+            "id":"qipao-one",
+            "coordinates": [121.606800, 31.177600]
+        },
+        {
+            "type":"point",
+            "name":"地点标识two",
+            "id":"qipao-two",
+             "coordinates": [121.603000, 31.173000]
+        }
+        
+    ]
+}

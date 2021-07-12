@@ -150,8 +150,19 @@ http.createServer().on('request', function(req, res){
     if(pathname === '/test/get') {
         res.end('get请求完成');
     }
+    if (pathname === '/api/home/commonPoint') {
+        res.setHeader('Content-Type', 'text/josn;chartset=utf-8');
+        fs.readFile('./dix/pf.json', function(err, data){
+            if(err) {
+                console.log(err);
+                return;
+            }
+            res.end(data.toString());
+        });
 
-}).listen('3000', function() {
+    }
+
+}).listen('8899', function() {
     console.log('Serve is running!');
-    console.log('http://localhost:3000');
+    console.log('http://localhost:8899');
 });
