@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body, html {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <canvas id="clock" height="200px" width="200px"></canvas>
+    </div>
+</body>
+<script>
+window.onload = function () {
+    var dom=document.getElementById("clock");
+    var ctx=dom.getContext('2d');
+    ctx.canvas.width = '800';
+    ctx.canvas.height = '800';
+
+    var pts = [[100, 100, "red"], [150, 150, "green"], [200, 100, "yellow"]];
+
+    ctx.lineWidth = 20;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+
+    for (var i = 0; i < pts.length - 1; i++) {
+        var begin = pts[i];
+        var end = pts[i + 1];
+
+        ctx.beginPath();
+        var grad = ctx.createLinearGradient(begin[0], begin[1], end[0], end[1]);
+        grad.addColorStop(0, begin[2]);
+        grad.addColorStop(1, end[2]);
+        ctx.strokeStyle = grad;
+        ctx.moveTo(begin[0], begin[1]);
+        ctx.lineTo(end[0], end[1]);
+        ctx.stroke();
+    }
+};
+</script>
+</html>

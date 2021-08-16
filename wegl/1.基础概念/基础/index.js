@@ -70,5 +70,17 @@ function main() {
     // 4. 在 program 中寻找顶点着色器中参数的 内存位置, 以便后续数据填充
     const positionAttributeLocation = gl.getAttribLocation(program, 'a_position');
 
+    // 5. 在显存上创建一个buffer
+    const positionBuffer = gl.createBuffer();
+
+    const position = [
+        0,0,
+        0,5,
+        0.7,0
+    ];
+
+    // 6. 将缓冲区绑定到webgl 对象上 (相当于给gl.ARRAY_BUFFER分配一个内存空间)
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+
     
 }

@@ -20,4 +20,11 @@
 
 ### gl.createBuffer()
 
-- 
+- 在显存上创建并初始化一个WebGLBuffer
+- 可以存储顶点，颜色，纹理等数据
+
+### gl.ARRAY_BUFFER
+
+- gl.ARRAY_BUFFER
+
+

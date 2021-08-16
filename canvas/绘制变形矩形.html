@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body, html {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <canvas id="clock" height="200px" width="200px"></canvas>
+    </div>
+</body>
+<script>
+window.onload = function () {
+    var dom=document.getElementById("clock");
+    var ctx=dom.getContext('2d');
+    ctx.canvas.width = '800';
+    ctx.canvas.height = '800';
+
+    ctx.transform(1,1,0,1,0,0);
+    const lg = createGradient(ctx);
+    ctx.fillStyle=lg;
+    ctx.fillRect(50,50,100,50);
+    
+    function createGradient(ctx) {
+        const lg = ctx.createLinearGradient(50,50,100,50);
+        lg.addColorStop(0, 'transparent');
+        lg.addColorStop(1, '#000');
+
+        return lg;
+    }
+};
+</script>
+</html>
